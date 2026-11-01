@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CreatorFlow | Creator Dashboard</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="Style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+
+    <a class="brand" href="#overview">
+      <span class="brand-mark">✦</span>
+      <span>creator<span class="brand-light">flow</span></span>
+    </a>
+
+    <div class="workspace-label">WORKSPACE</div>
+
+    <nav class="nav">
+      <a class="nav-link active" href="#overview"><span>▦</span> Overview</a>
+      <a class="nav-link" href="#deals"><span>◈</span> Brand deals <b class="nav-count" id="navDealCount">3</b></a>
+      <a class="nav-link" href="#tasks"><span>☑</span> My tasks</a>
+      <a class="nav-link" href="#calendar"><span>◷</span> Calendar</a>
+      <a class="nav-link" href="#payments"><span>₹</span> Payments</a>
+    </nav>
+
+    <div class="workspace-label tools-label">YOUR SPACE</div>
+
+    <nav class="nav">
+      <a class="nav-link" href="#growth"><span>⌁</span> Growth analytics</a>
+      <a class="nav-link" href="#templates"><span>▤</span> Templates</a>
+    </nav>
+
+    <div class="sidebar-bottom">
+
+      <div class="upgrade-card">
+        <div class="upgrade-icon">✧</div>
+        <strong>Make room to grow</strong>
+        <p>Keep every collaboration organized in one place.</p>
+        <a href="#deals">Explore workspace →</a>
+      </div>
+
+      <div class="profile">
+  <button class="avatar" id="avatarButton" type="button" title="Change avatar">JD</button>
+  <div class="profile-info">
+    <strong id="profileName">Jamie Davis</strong>
+    <small>Creator account</small>
+  </div>
+  <button class="profile-menu" id="editProfileBtn" type="button">✎</button>
+</div>
+
+<input id="avatarUpload" type="file" accept="image/*" hidden>
+
+      <button id="logoutBtn" class="logout-btn" type="button" onclick="logout()">
+        ↪ Log out
+      </button>
+
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+
+    <header class="topbar">
+      <button class="mobile-menu" id="menuBtn" aria-label="Open menu">☰</button>
+
+      <div class="breadcrumb">
+        Workspace <span>/</span> <strong>Overview</strong>
+      </div>
+
+      <div class="top-actions">
+        <span class="today-label" id="todayLabel">Your creator workspace</span>
+        <button class="icon-btn notification" aria-label="Notifications">♧<i></i></button>
+        <button class="top-avatar" id="topAvatarButton" type="button" title="Change avatar">JD</button>
+      </div>
+    </header>
+
+    <div class="content">
+
+      <!-- WELCOME -->
+      <section class="welcome-row" id="overview">
+        <div>
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            YOUR CREATOR HQ
+          </div>
+
+          <h1>Good morning, Jamie <span class="wave">✦</span></h1>
+
+          <p class="subtitle">
+            Here's what's happening with your creator business today.
+          </p>
+        </div>
+
+        <button class="primary-btn" id="addDealBtn">
+          <span>＋</span> Add new deal
+        </button>
+      </section>
+
+      <!-- STATS -->
+      <section class="stats-grid">
+
+        <article class="stat-card">
+          <div class="stat-top">
+            <span>Total brand deals</span>
+            <span class="stat-icon purple">◈</span>
+          </div>
+          <div class="stat-value" id="totalDeals">3</div>
+          <div class="stat-foot">
+            <span class="positive">↗ Active collaborations</span> this month
+          </div>
+        </article>
+
+        <article class="stat-card">
+          <div class="stat-top">
+            <span>Pending tasks</span>
+            <span class="stat-icon orange">☑</span>
+          </div>
+          <div class="stat-value" id="pendingTasks">4</div>
+          <div class="stat-foot">Stay on top of your to-dos</div>
+        </article>
+
+        <article class="stat-card">
+          <div class="stat-top">
+            <span>Upcoming deadlines</span>
+            <span class="stat-icon blue">◷</span>
+          </div>
+          <div class="stat-value" id="upcomingDeadlines">3</div>
+          <div class="stat-foot">
+            <span class="deadline-note">Next 7 days</span> · Keep it moving
+          </div>
+        </article>
+
+      </section>
+
+      <!-- PAYMENT SNAPSHOT -->
+      <section class="payment-snapshot">
+        <div class="snapshot-heading">
+          <div>
+            <span class="eyebrow">MONEY AT A GLANCE</span>
+            <h2>Payment snapshot</h2>
+          </div>
+          <span class="snapshot-note">Updated from your brand deals</span>
+        </div>
+
+        <div class="snapshot-grid">
+          <article class="snapshot-card snapshot-total">
+            <span class="snapshot-label">Total deal value</span>
+            <strong id="overviewPaymentTotal">₹45,000</strong>
+            <small>Across all collaborations</small>
+          </article>
+
+          <article class="snapshot-card snapshot-paid">
+            <span class="snapshot-label">Amount paid</span>
+            <strong id="overviewPaymentPaid">₹20,000</strong>
+            <small>Money received</small>
+          </article>
+
+          <article class="snapshot-card snapshot-pending">
+            <span class="snapshot-label">Amount pending</span>
+            <strong id="overviewPaymentPending">₹25,000</strong>
+            <small>Still to be received</small>
+          </article>
+        </div>
+      </section>
+
+      <!-- DASHBOARD GRID -->
+      <div class="dashboard-grid">
+
+        <!-- BRAND DEALS -->
+        <section class="panel deals-panel" id="deals">
+          <div class="panel-heading">
+            <div>
+              <h2>Active brand deals</h2>
+              <p>See each campaign, platform and payment status.</p>
+            </div>
+            <button class="text-btn" id="viewDealsBtn">View all ↗</button>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>BRAND / CAMPAIGN</th>
+                  <th>PLATFORM</th>
+                  <th>SEND WORK TO</th>
+                  <th>STATUS</th>
+                  <th>DEADLINE</th>
+                  <th>TOTAL DEAL</th>
+                  <th>AMOUNT PAID</th>
+                  <th>AMOUNT PENDING</th>
+                </tr>
+              </thead>
+              <tbody id="dealsTable"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- TASKS -->
+        <section class="panel tasks-panel" id="tasks">
+          <div class="panel-heading">
+            <div>
+              <h2>My tasks <span class="mini-count" id="taskCount">4</span></h2>
+              <p>A little progress goes a long way.</p>
+            </div>
+            <button class="more-btn" id="addTaskBtn" title="Add task">＋</button>
+          </div>
+
+          <div class="task-progress">
+            <div>
+              <span id="taskProgressText">1 of 5 completed</span>
+              <strong id="taskPercent">20%</strong>
+            </div>
+            <div class="progress-track">
+              <span id="taskProgressBar" style="width:20%"></span>
+            </div>
+          </div>
+
+          <div class="task-list" id="taskList">
+            <label class="task-item completed">
+              <input type="checkbox" checked>
+              <span class="custom-check"></span>
+              <span class="task-copy">
+                <strong>Finalize content calendar</strong>
+                <small>Planning · Today</small>
+              </span>
+            </label>
+
+            <label class="task-item">
+              <input type="checkbox">
+              <span class="custom-check"></span>
+              <span class="task-copy">
+                <strong>Film Nike campaign reel</strong>
+                <small>Content creation · Nov 08</small>
+              </span>
+            </label>
+
+            <label class="task-item">
+              <input type="checkbox">
+              <span class="custom-check"></span>
+              <span class="task-copy">
+                <strong>Send Spotify draft</strong>
+                <small>Approval · Nov 10</small>
+              </span>
+            </label>
+
+            <label class="task-item">
+              <input type="checkbox">
+              <span class="custom-check"></span>
+              <span class="task-copy">
+                <strong>Upload product photos</strong>
+                <small>Deliverables · Nov 12</small>
+              </span>
+            </label>
+
+            <label class="task-item">
+              <input type="checkbox">
+              <span class="custom-check"></span>
+              <span class="task-copy">
+                <strong>Share campaign report</strong>
+                <small>Reporting · Nov 14</small>
+              </span>
+            </label>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- BOTTOM GRID -->
+      <div class="bottom-grid">
+
+        <section class="panel deadlines-panel" id="deadlines">
+          <div class="panel-heading">
+            <div>
+              <h2>Upcoming deadlines</h2>
+              <p>Don't let an important date slip by.</p>
+            </div>
+            <span class="calendar-icon">▦</span>
+          </div>
+          <div class="deadline-list" id="deadlineList"></div>
+        </section>
+
+        <section class="panel payments-panel" id="payments">
+          <div class="panel-heading">
+            <div>
+              <h2>Payments overview</h2>
+              <p>Know exactly what has arrived and what is still due.</p>
+            </div>
+            <span class="payment-icon">₹</span>
+          </div>
+
+          <div class="payment-total">
+            <small>TOTAL DEAL VALUE</small>
+            <strong id="paymentExpected">₹45,000</strong>
+            <span class="payment-sub">Across all tracked collaborations</span>
+          </div>
+
+          <div class="payment-row">
+            <span><i class="legend-dot received"></i> Amount paid</span>
+            <strong id="paymentPaid">₹20,000</strong>
+          </div>
+
+          <div class="payment-row">
+            <span><i class="legend-dot waiting"></i> Amount pending</span>
+            <strong id="paymentPending">₹25,000</strong>
+          </div>
+
+          <div class="payment-bar">
+            <span id="paidBar"></span>
+            <i id="pendingBar"></i>
+          </div>
+
+          <p class="payment-sub" id="paymentNote" style="margin-top:10px">
+            Payment totals update when you add a deal.
+          </p>
+        </section>
+
+      </div>
+
+      <!-- CALENDAR -->
+      <section class="panel calendar-panel" id="calendar">
+        <div class="panel-heading calendar-heading">
+          <div>
+            <h2>Creator calendar</h2>
+            <p>Campaign deadlines and payment due dates in one place.</p>
+          </div>
+
+          <div class="calendar-controls">
+            <button class="calendar-nav-btn" type="button" id="prevMonth" aria-label="Previous month">‹</button>
+            <strong id="calendarMonth"></strong>
+            <button class="calendar-nav-btn" type="button" id="nextMonth" aria-label="Next month">›</button>
+          </div>
+        </div>
+
+        <div class="calendar-legend">
+          <span><i class="legend-campaign"></i> Campaign deadline</span>
+          <span><i class="legend-payment"></i> Payment due</span>
+        </div>
+
+        <div class="calendar-weekdays">
+          <span>Sun</span>
+          <span>Mon</span>
+          <span>Tue</span>
+          <span>Wed</span>
+          <span>Thu</span>
+          <span>Fri</span>
+          <span>Sat</span>
+        </div>
+
+        <div class="calendar-days" id="calendarDays"></div>
+
+        <div class="calendar-selected">
+          <h3 id="selectedDateTitle">Select a date</h3>
+          <div id="calendarEvents">
+            <p class="calendar-empty">Choose a date to see your events.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- GROWTH ANALYTICS -->
+      <section class="panel growth-panel" id="growth">
+        <div class="panel-heading growth-heading">
+          <div>
+            <h2>Growth analytics</h2>
+            <p>See how your brand-deal value changes month by month.</p>
+          </div>
+          <span class="growth-badge">Monthly deal value</span>
+        </div>
+
+        <div class="growth-summary">
+          <div>
+            <small>TOTAL DEAL VALUE</small>
+            <strong id="growthTotal">₹0</strong>
+          </div>
+          <div>
+            <small>STRONGEST MONTH</small>
+            <strong id="growthBestMonth">—</strong>
+          </div>
+        </div>
+
+        <div class="line-chart-wrap">
+          <div class="line-chart-area">
+            <svg
+              id="monthlyLineChart"
+              viewBox="0 0 800 360"
+              preserveAspectRatio="xMidYMid meet"
+              role="img"
+              aria-label="Business Growth Monthly brand deal value line graph"
+            >
+              <defs>
+                <!-- Background Gradient: Crimson to Purple to Royal Blue -->
+                <linearGradient id="chartBgGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#b81545" />
+                  <stop offset="25%" stop-color="#891b65" />
+                  <stop offset="50%" stop-color="#552288" />
+                  <stop offset="75%" stop-color="#233a9d" />
+                  <stop offset="100%" stop-color="#1452be" />
+                </linearGradient>
+
+                <!-- Glowing Green Area Gradient -->
+                <linearGradient id="growthAreaGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#22c55e" stop-opacity="0.95" />
+                  <stop offset="40%" stop-color="#16a34a" stop-opacity="0.75" />
+                  <stop offset="80%" stop-color="#15803d" stop-opacity="0.25" />
+                  <stop offset="100%" stop-color="#047857" stop-opacity="0.05" />
+                </linearGradient>
+
+                <!-- Line Stroke Gradient: Red to Pink to Bright White -->
+                <linearGradient id="growthLineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#ef4444" />
+                  <stop offset="35%" stop-color="#f43f5e" />
+                  <stop offset="68%" stop-color="#f472b6" />
+                  <stop offset="90%" stop-color="#fdf2f8" />
+                  <stop offset="100%" stop-color="#ffffff" />
+                </linearGradient>
+
+                <!-- Glow Filter for Nodes -->
+                <filter id="pointGlow" x="-50%" y="-50%" width="200%" height="200%">
+                  <feGaussianBlur stdDeviation="3" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
+
+              <!-- Chart Background Card -->
+              <rect width="100%" height="100%" rx="18" fill="url(#chartBgGrad)" />
+
+              <!-- Chart Title -->
+              <text x="400" y="42" text-anchor="middle" class="svg-chart-title">Business Growth</text>
+
+              <!-- Coordinate Grid (Horizontal & Vertical Dotted Lines) -->
+              <g id="lineGrid"></g>
+
+              <!-- Area Fill Under the Curve (Smooth Curved Path) -->
+              <path id="monthlyArea" d="" fill="url(#growthAreaGrad)"></path>
+
+              <!-- The Growth Line (Smooth Curved Path) -->
+              <path
+                id="monthlyLine"
+                d=""
+                fill="none"
+                stroke="url(#growthLineGrad)"
+                stroke-width="4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+
+              <!-- Data Point Circles -->
+              <g id="linePoints"></g>
+
+              <!-- Y-Axis Labels on the Right -->
+              <g id="lineYLabels"></g>
+
+              <!-- X-Axis Month Labels along the Bottom -->
+              <g id="growthMonths"></g>
+            </svg>
+          </div>
+        </div>
+
+        <p class="growth-note" id="growthNote">
+          Your monthly deal values will appear here.
+        </p>
+      </section>
+
+      <!-- TEMPLATES -->
+      <section class="panel templates-section" id="templates">
+        <div class="templates-header">
+          <div class="template-header-copy">
+            <span class="template-spark">✧</span>
+            <div>
+              <h2>Creator Templates & Workflows</h2>
+              <p>Ready-to-use campaign packages, brand pitch emails, and collaboration contracts to streamline your creator business.</p>
+            </div>
+          </div>
+
+          <div class="template-tabs" id="templateTabs">
+            <button class="template-tab active" data-filter="all" type="button">All</button>
+            <button class="template-tab" data-filter="campaign" type="button">Campaign Deals</button>
+            <button class="template-tab" data-filter="email" type="button">Pitch & Outreach</button>
+            <button class="template-tab" data-filter="legal" type="button">Agreements & Legal</button>
+          </div>
+        </div>
+
+        <div class="templates-grid" id="templatesGrid"></div>
+      </section>
+
+      <footer>
+        Made for creators, by CreatorFlow <span>✦</span>
+      </footer>
+
+    </div>
+  </main>
+</div>
+
+<!-- DEAL MODAL -->
+<div class="modal-backdrop" id="dealModal">
+  <div class="modal">
+    <div class="modal-heading">
+      <div>
+        <span class="eyebrow">NEW COLLABORATION</span>
+        <h2>Add a brand deal</h2>
+        <p>Enter campaign and payment details.</p>
+      </div>
+      <button class="close-btn" id="closeModal" type="button">×</button>
+    </div>
+
+    <form id="dealForm">
+      <label>
+        Brand name
+        <input id="brandName" required placeholder="e.g. Adidas">
+      </label>
+
+      <label>
+        Campaign name
+        <input id="campaignName" required placeholder="e.g. Winter collection reel">
+      </label>
+
+      <label>
+        Campaign deliverables
+        <textarea id="dealDeliverables" rows="3" placeholder="Add one deliverable per line, e.g.
+1 Instagram reel
+2 Instagram stories
+Submit campaign report"></textarea>
+        <small class="field-help">Each deliverable will automatically become a task with the campaign deadline.</small>
+      </label>
+
+      <label>
+        Social media platform
+        <select id="dealPlatform" required>
+          <option value="">Choose a platform</option>
+          <option>Instagram</option>
+          <option>YouTube</option>
+          <option>Facebook</option>
+          <option>TikTok</option>
+          <option>Snapchat</option>
+          <option>Pinterest</option>
+          <option>LinkedIn</option>
+          <option>X (Twitter)</option>
+          <option>Twitch</option>
+          <option>Threads</option>
+          <option>WhatsApp</option>
+          <option>Telegram</option>
+          <option>Discord</option>
+          <option>Reddit</option>
+          <option>WeChat</option>
+          <option>Bluesky</option>
+          <option>Tumblr</option>
+          <option>Other</option>
+        </select>
+      </label>
+
+      <label>
+        Send work to (Email or Social account)
+        <input id="dealContact" placeholder="e.g. collabs@brand.com or @manager_handle">
+      </label>
+
+      <div class="form-row">
+        <label>
+          Deal amount (₹)
+          <input id="dealAmount" type="number" min="1" step="0.01" required placeholder="15000">
+        </label>
+
+        <label>
+          Amount already paid (₹)
+          <input id="amountPaid" type="number" min="0" step="0.01" value="0" required placeholder="0">
+        </label>
+      </div>
+
+      <div class="form-row">
+        <label>
+          Campaign deadline
+          <input id="dealDeadline" type="date" required>
+        </label>
+
+        <label>
+          Payment due date
+          <input id="paymentDueDate" type="date">
+        </label>
+      </div>
+
+      <label>
+        Campaign status
+        <select id="dealStatus">
+          <option>In progress</option>
+          <option>In review</option>
+          <option>Pending</option>
+          <option>Completed</option>
+        </select>
+      </label>
+
+      <div class="modal-actions">
+        <button type="button" class="secondary-btn" id="cancelModal">Cancel</button>
+        <button type="submit" class="primary-btn">
+          Create deal <span>→</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- TEMPLATE PREVIEW MODAL -->
+<div class="modal-backdrop" id="templateModal">
+  <div class="modal template-preview-modal">
+    <div class="modal-heading">
+      <div>
+        <span class="eyebrow" id="templateModalCategory">CREATOR TEMPLATE</span>
+        <h2 id="templateModalTitle">Template Title</h2>
+        <p id="templateModalSubtitle">Preview and copy ready-to-use creator copy.</p>
+      </div>
+      <button class="close-btn" id="closeTemplateModal" type="button">×</button>
+    </div>
+
+    <div class="template-modal-body">
+      <textarea id="templateModalContent" readonly rows="13"></textarea>
+    </div>
+
+    <div class="modal-actions">
+      <button type="button" class="secondary-btn" id="cancelTemplateModal">Close</button>
+      <button type="button" class="primary-btn" id="copyTemplateModalBtn">
+        Copy to clipboard <span>📋</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">✓ Deal added successfully!</div>
+
+<script src="script.js"></script>
+</body>
+</html>
