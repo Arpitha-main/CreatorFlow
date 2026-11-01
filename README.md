@@ -37,13 +37,13 @@ CreatorFlow/
 
 ## 💻 How to Run the Project
 
-1. Clone the repository:
+1. Clone the repository: https://github.com/Arpitha-main/CreatorFlow.git
 
-2. Open the project folder in Visual Studio Code.
+3. Open the project folder in Visual Studio Code.
 
-3. Open `index.html` in your browser.
+4. Open `index.html` in your browser.
 
-4. You can also use the **Live Server** extension in VS Code to run the project.
+5. You can also use the **Live Server** extension in VS Code to run the project.
 
 ## 👩‍💻 Collaborators
 
