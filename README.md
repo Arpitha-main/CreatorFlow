@@ -24,17 +24,6 @@ The project features a clean, modern lavender-themed interface designed to make 
 - **JavaScript** – Interactive features and dashboard functionality.
 - **Local Storage** – Store user and dashboard data in the browser.
 
-## 📂 Project Structure
-
-```text
-CreatorFlow/
-│
-├── index.html
-├── Style.css
-├── script.js
-└── README.md
-```
-
 ## 💻 How to Run the Project
 
 1. Clone the repository: https://github.com/Arpitha-main/CreatorFlow.git
